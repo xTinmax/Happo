@@ -1,0 +1,183 @@
+body {
+  font-family: "Noto Serif JP", serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+}
+
+.linkBtn {
+  min-width: 128px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.sec_ttl span {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.gNav_main ._jp,
+.header_mv_nav ._jp {
+  font-size: 12px;
+  font-weight: 400;
+  padding-left: 5px;
+}
+
+.gNav_main a {
+  flex-wrap: wrap;
+}
+.gNav_main ._jp {
+  display: block;
+  width: 100%;
+  padding-left: 45px;
+  line-height: 1;
+}
+.gNav_main li + li {
+  margin-top: 3vh;
+}
+
+.gNav_booking,
+.mainFix_bottomFix_booking {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+@media screen and (max-width: 767px) {
+  .gNav_booking,
+  .mainFix_bottomFix_booking {
+    font-weight: 500;
+  }
+}
+
+.about h2 {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 37px;
+}
+.about_infoBox p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 37px;
+  letter-spacing: 0.08em;
+}
+@media screen and (max-width: 767px) {
+  .about_infoBox p {
+    font-size: 18px;
+  }
+}
+
+.facilities_point {
+  font-size: 15px;
+  line-height: 28px;
+}
+.facilities_point li {
+  letter-spacing: 0.05em;
+}
+@media screen and (max-width: 767px) {
+  .facilities_point li {
+    width: calc(100% + 8vw);
+  }
+}
+.facilities_point li::before {
+  top: 12px;
+}
+.facilities_feature li {
+  max-width: 206px;
+}
+@media screen and (max-width: 767px) {
+  .facilities_feature li {
+    max-width: 100%;
+  }
+}
+.facilities_feature p:nth-of-type(1) {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.05em;
+  margin-bottom: 17px;
+}
+.facilities_feature p:nth-of-type(2) {
+  letter-spacing: 0.03em;
+}
+
+.roomType_list {
+  letter-spacing: 0.03em;
+}
+.roomType_list_infoBox {
+  margin-top: 20px;
+}
+.roomType_list_subTtl {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: 0.03em;
+}
+.roomType_list_contTtl {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+}
+.roomType_amenities h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+}
+.roomType_amenities_list {
+  font-size: 14px;
+}
+.roomType_amenities_list li {
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+.foodDrink_textBox {
+  line-height: 24px;
+  letter-spacing: 0.03em;
+}
+
+.activities_read {
+  max-width: 640px;
+}
+.activities_link {
+  padding-top: 36px;
+  padding-bottom: 36px;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.05em;
+}
+@media screen and (max-width: 767px) {
+  .activities_link {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+}
+
+.booking_ttl {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+}
+
+.footer_nav a {
+  letter-spacing: 0.03em;
+}
+.footer_cont02 {
+  font-size: 15px;
+}
+
+/*# sourceMappingURL=jp.css.map */
