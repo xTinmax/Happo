@@ -46,16 +46,16 @@ require_once(__DIR__ . '/Utils.php');
       <?php } ?>
       <ul class="gNav_sns">
       <?php 
-      if(!empty(get_field('contact')['facebook'])) { ?> 
+      if(!empty(get_field('facebook', 'options'))) { ?> 
         <li>
-          <a href="<?= get_field('contact')['facebook']; ?>" target="_blank" rel="noopener">
+          <a href="<?= get_field('facebook', 'options'); ?>" target="_blank" rel="noopener">
           <?php include('image/sns_facebook.php'); ?>
           </a>
         </li>
         <?php } 
-        if(!empty(get_field('contact')['instagram'])) { ?>
+        if(!empty(get_field('instagram', 'options'))) { ?>
         <li>
-          <a href="<?= get_field('contact')['instagram']; ?>" target="_blank" rel="noopener">
+          <a href="<?= get_field('instagram', 'options'); ?>" target="_blank" rel="noopener">
           <?php include('image/sns_instagram.php'); ?>
           </a>
         </li>
@@ -82,14 +82,15 @@ require_once(__DIR__ . '/Utils.php');
         </a>
           <?php } ?>
         <ul class="mainFix_topFix_language">
-          <?php 
+          <?php
+          if(has_nav_menu( 'menu-2' )) { 
           wp_nav_menu( 
             array(
               'theme_location' => 'menu-2',
               'menu_id'        => 'secundary-menu',
               'container'            => 'li',
          ));
-          ?>
+         } ?>
         </ul>
       </div>
     </div>
@@ -130,26 +131,26 @@ require_once(__DIR__ . '/Utils.php');
         <p class="header_mv_catch"><?= get_field('bottom_fix')['bottom_fix_title'];?></p>
        </div>
      </header>
-     <section class="about" id="about">
+     <section class="about" id="intro">
        <div class="inner about scrollAnimation fadeIn">
        <?php
          if(!empty($itemsArray['0']['title'])){ ?>
          <p class="sec_num">01</p>
          <?php } ?>
-         <h2><?= get_field('about')['about_title']; ?></h2>
+         <h2><?= get_field('intro')['title']; ?></h2>
          <p class="about_read">
-           <?= get_field('about')['about_text']; ?>
+           <?= get_field('intro')['text']; ?>
          </p>
        </div>
        <?php  
-        if(!empty(get_field('about')['about_img']) || !empty(get_field('about')['about_info'])) { ?>
-       <div class="about_infoBox about" style="background: url(<?= get_field('about')['about_img']['sizes']['2048x2048'];?>) center / cover no-repeat">
-         <div class="scrollAnimation fadeIn c"><?= get_field('about')['about_info']; ?></div>
+        if(!empty(get_field('intro')['image']) || !empty(get_field('intro')['description'])) { ?>
+       <div class="about_infoBox about" style="background: url(<?= get_field('intro')['image']['sizes']['2048x2048'];?>) center / cover no-repeat">
+         <div class="scrollAnimation fadeIn c"><?= get_field('intro')['description']; ?></div>
        </div>
        <?php } ?>
      </section>
 
-     <section class="facilities" id="section1">
+     <section class="facilities" id="features">
        <div class="scrollAnimation fadeIn">
         <?php
          if(!empty($itemsArray['1']['title'])){ ?>
@@ -158,49 +159,49 @@ require_once(__DIR__ . '/Utils.php');
          <?php } ?>
        </div>
        <?php
-       if(!empty(get_field('section_1_type_a'))) {
-       $section1TypeA= get_field('section_1_type_a');
-        foreach($section1TypeA as $section) { ?>
+       if(!empty(get_field('features_right'))) {
+       $featuresRight= get_field('features_right');
+        foreach($featuresRight as $feature) { ?>
             
           <section class="saving facilities_sec inner-pc">
             <div class="facilities_imgBox">
               <picture>
-                <source media="(max-width:767px)" srcset="<?= $section['type_a_image']['sizes']['large']; ?>">
-                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $section['type_a_image']['sizes']['large']; ?>" alt="">
+                <source media="(max-width:767px)" srcset="<?= $feature['image']['sizes']['large']; ?>">
+                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
               </picture>
             </div>
 
             <div class="facilities_textBox scrollAnimation fadeIn">
-              <h3 class="facilities_contTtl"><?= $section['type_a_title']; ?></h3>
+              <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
               <ul class="facilities_point scrollAnimation">
                 <?php
-                if(!empty($section['type_a_list'])) { 
-                $itemList= $section['type_a_list']; 
+                if(!empty($feature['feature_list'])) { 
+                $itemList= $feature['feature_list']; 
                 foreach($itemList as $item) { 
-                  if(!empty($item['item'])) { ?>
-                <li><?= $item['item']; ?></li>
+                  if(!empty($item['feature'])) { ?>
+                <li><?= $item['feature']; ?></li>
                 <?php }}} ?>
               </ul>
             </div>
           </section>
        <?php } }
-       if(!empty(get_field('section_1_type_b'))) {
-       $section1TypeB= get_field('section_1_type_b');
-        foreach($section1TypeB as $section) { ?>           
+       if(!empty(get_field('features_left'))) {
+       $featuresLeft= get_field('features_left');
+        foreach($featuresLeft as $feature) { ?>           
        <section class="nonContact facilities_sec inner-pc">
          <div class="facilities_imgBox">
-           <img class="js_rellax scrollAnimation fadeIn02" src="<?= $section['type_b_image']['sizes']['large']; ?>" alt="">
+           <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
          </div>
 
          <div class="facilities_textBox scrollAnimation fadeIn">
-           <h3 class="facilities_contTtl"><?= $section['type_b_title']; ?></h3>
+           <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
            <ul class="facilities_point scrollAnimation">
            <?php
-           if(!empty($section['type_b_list'])) {
-                $itemList= $section['type_b_list']; 
+           if(!empty($feature['feature_list'])) {
+                $itemList= $feature['feature_list']; 
                 foreach($itemList as $item) { 
-                  if(!empty($item['item'])) {?>
-                <li><?= $item['item']; ?></li>
+                  if(!empty($item['feature'])) {?>
+                <li><?= $item['feature']; ?></li>
                 <?php }}} ?>
            </ul>
          </div>
@@ -209,22 +210,22 @@ require_once(__DIR__ . '/Utils.php');
 
        <ul class="facilities_feature inner scrollAnimation fadeIn">
          <?php 
-            $section1Icons= get_field('section_1_icons');
-            if(!empty($section1Icons)) {
-              foreach($section1Icons as $iconContent) { ?>
+            $featureIcon= get_field('feature_icon');
+            if(!empty($featureIcon)) {
+              foreach($featureIcon as $iconContent) { ?>
               <li>
               <?php  
                 if(!empty($iconContent['icon'])) { ?>
                 <img src="<?= $iconContent['icon']['sizes']['large']; ?>" alt="">
                 <?php } ?>
-                <p><?= $iconContent['icon_title']; ?></p>
-                <p><?= $iconContent['icon_text']; ?></p>
+                <p><?= $iconContent['title']; ?></p>
+                <p><?= $iconContent['description']; ?></p>
               </li>
           <?php } } ?>
        </ul>
      </section>
   
-     <section class="roomType" id="section2">
+     <section class="roomType" id="rooms">
        <div class="roomType_inner inner-pc">
          <div class="scrollAnimation scrollAnimation fadeIn">
          <?php
@@ -236,13 +237,13 @@ require_once(__DIR__ . '/Utils.php');
 
            <ul class="roomType_list inner-sp">
             <?php 
-              $section2TypeA= get_field('section_2_type_a');
-              if(!empty($section2TypeA)){
-                foreach($section2TypeA as $section) { ?>
+              $rooms= get_field('rooms');
+              if(!empty($rooms)){
+                foreach($rooms as $room) { ?>
                   <li class="scrollAnimation fadeIn">
                     <div>
                     <?php
-                      $gallery= $section['type_a_gallery'];
+                      $gallery= $room['gallery'];
                       if(!empty($gallery)){ ?>
                         <div class="owl-carousel owl-theme">
                           <?php 
@@ -253,28 +254,28 @@ require_once(__DIR__ . '/Utils.php');
                           <?php } ?>
                         </div>
                         <?php } ?>
-                          <p class="roomType_list_subTtl"><?= $section['type_a_sub_title']; ?></p>
-                          <h3 class="roomType_list_contTtl"><?= $section['type_a_title_content']; ?></h3>
-                          <p><?= $section['type_a_text']; ?></p>
+                          <p class="roomType_list_subTtl"><?= $room['type']; ?></p>
+                          <h3 class="roomType_list_contTtl"><?= $room['name']; ?></h3>
+                          <p><?= $room['description']; ?></p>
                     </div>
                       <div class="roomType_list_infoBox">
-                        <p><?= $section['type_a_info_box']; ?></p>
+                        <p><?= $room['capacity']; ?></p>
                         <?php
-                        if(!empty($section['boton_1'])){ ?>
-                          <a class="linkBtn" href="<?= $section['boton_1']['url']; ?>" target="_blank" rel="noopener"><?= $section['boton_1']['title']; ?></a>
+                        if(!empty($room['left_button'])){ ?>
+                          <a class="linkBtn" href="<?= $room['left_button']['url']; ?>" target="_blank" rel="noopener"><?= $room['left_button']['title']; ?></a>
                           <?php }
-                        if(!empty($section['boton_2'])){ ?> 
-                          <a class="linkBtn" href="<?= $section['boton_2']['url']; ?>" target="_blank" rel="noopener"><?= $section['boton_2']['title']; ?></a>
+                        if(!empty($room['right_button'])){ ?> 
+                          <a class="linkBtn" href="<?= $room['right_button']['url']; ?>" target="_blank" rel="noopener"><?= $room['right_button']['title']; ?></a>
                           <?php } ?>
                       </div>
                     </li>
-            <?php } } 
-              $section2TypeB= get_field('section_2_type_b');
-              if(!empty($section2TypeB)){
-                foreach($section2TypeB as $section) { ?>
+             <?php } } 
+              $suit= get_field('suit');
+              if(!empty($suit)){
+                foreach($suit as $room) { ?>
                   <li class="_sweet scrollAnimation fadeIn">
                   <?php
-                  $gallery= $section['type_b_gallery'];
+                  $gallery= $room['gallery'];
                   if(!empty($gallery)){ ?>
                     <div class="owl-carousel owl-theme">
                       <?php 
@@ -286,17 +287,17 @@ require_once(__DIR__ . '/Utils.php');
                     </div>
                     <?php } ?>
                     <div class="_sweet_textBox">
-                      <p class="roomType_list_subTtl"><?= $section['type_b_sub_title']; ?></p>
-                      <h3 class="roomType_list_contTtl"><?= $section['type_b_title_content']; ?></h3>
-                      <p><?= $section['type_b_text']; ?></p>
+                      <p class="roomType_list_subTtl"><?= $room['type']; ?></p>
+                      <h3 class="roomType_list_contTtl"><?= $room['name']; ?></h3>
+                      <p><?= $room['description']; ?></p>
                       <div class="roomType_list_infoBox">
-                        <p><?= $section['type_b_info_box']; ?></p>
+                        <p><?= $room['capacity']; ?></p>
                         <?php
-                        if(!empty($section['boton_1'])){ ?>
-                        <a class="linkBtn" href="<?= $section['boton_1']['url']; ?>" target="_blank" rel="noopener"><?= $section['boton_1']['title']; ?></a>
+                        if(!empty($room['left_button'])){ ?>
+                        <a class="linkBtn" href="<?= $room['left_button']['url']; ?>" target="_blank" rel="noopener"><?= $room['left_button']['title']; ?></a>
                         <?php }
-                        if(!empty($section['boton_1'])){ ?>
-                        <a class="linkBtn" href="<?= $section['boton_2']['url']; ?>" target="_blank" rel="noopener"><?= $section['boton_2']['title']; ?></a>
+                        if(!empty($room['right_button'])){ ?>
+                        <a class="linkBtn" href="<?= $room['right_button']['url']; ?>" target="_blank" rel="noopener"><?= $room['right_button']['title']; ?></a>
                         <?php } ?>
                       </div>
                     </div>
@@ -306,28 +307,30 @@ require_once(__DIR__ . '/Utils.php');
          <div class="scrollAnimation fadeIn">
                          
            <section class="roomType_amenities">
-             <h3><?= get_field('list_container')['list_title']; ?></h3>
+             <h3><?= get_field('amenities')['title']; ?></h3>
              <div class="roomType_amenities_container inner-sp">
                <ul class="roomType_amenities_list">
                 <?php 
-                $listContainer=get_field('list_container')['list'];
-                if(!empty($listContainer)){
-                foreach($listContainer as $item) { ?>
-                 <li><?= $item['item'] ?></li>
+                $amenitiesList=get_field('amenities')['amenities_list'];
+                if(!empty($amenitiesList)){
+                foreach($amenitiesList as $item) { ?>
+                 <li><?= $item['amenity'] ?></li>
                  <?php } } ?>
                </ul>
              </div>
            </section>
+
+
            <?php 
-           if(!empty(get_field('google_map')['google_map_adress'])) { ?>
+           if(!empty(get_field('google_map')['adress'])) { ?>
             <section class="roomType_access">
-             <h3><?= get_field('google_map')['google_map_title']; ?></h3>
+             <h3><?= get_field('google_map')['title']; ?></h3>
              <div class="roomType_access_map inner-sp">
-               <iframe src="<?= get_field('google_map')['google_map_adress']; ?>" width="770" height="352" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+               <iframe src="<?= get_field('google_map')['adress']; ?>" width="770" height="352" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
              </div>
              <?php 
-             if(!empty(get_field('section_footer')['google_map'])) { ?>
-             <p class="roomType_access_mapLink inner-sp"><a href="<?= get_field('section_footer')['google_map']; ?>" target="_blank" rel="noopener">Google Map</a></p>
+             if(!empty(get_field('footer','options')['google_map'])) { ?>
+             <p class="roomType_access_mapLink inner-sp"><a href="<?= get_field('footer','options')['google_map']; ?>" target="_blank" rel="noopener">Google Map</a></p>
              <?php } ?>
             </section>
            <?php } ?>
@@ -335,7 +338,7 @@ require_once(__DIR__ . '/Utils.php');
        </div>
      </section>
 
-     <section class="foodDrink inner" id="section3">
+     <section class="foodDrink inner" id="foodDrink">
        <div class="scrollAnimation fadeIn">
        <?php
          if(!empty($itemsArray['3']['title'])){ ?>
@@ -345,39 +348,39 @@ require_once(__DIR__ . '/Utils.php');
        </div>
 
        <?php
-         $section3TypeA= get_field('section_3_type_a');
-         if(!empty($section3TypeA)) {
-         foreach($section3TypeA as $section) { ?>
+         $foodDrinks= get_field('food_&_drinks');
+         if(!empty($foodDrinks)) {
+         foreach($foodDrinks as $foodDrink) { ?>
             <section class="foodDrink_sec food scrollAnimation">
               <?php 
-              if(!empty($section['type_a_image'])) { ?>
+              if(!empty($foodDrink['image'])) { ?>
               <div class="foodDrink_imgBox">
-                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $section['type_a_image']['sizes']['large'];  ?>" alt="">
+                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $foodDrink['image']['sizes']['large'];  ?>" alt="">
               </div>
               <?php } ?>
               <div class="foodDrink_contBox scrollAnimation fadeIn">
-                <h3><img src="<?= $section['type_a_title_image']['sizes']['large'];  ?>" alt=""></h3>
+                <h3><img src="<?= $foodDrink['logo']['sizes']['large'];  ?>" alt=""></h3>
                 <div class="foodDrink_textBox">
-                  <p><?= $section['type_a_text_1'];  ?></p>
-                  <p><?= $section['type_a_text_2'];  ?></p>
+                  <p><?= $foodDrink['text_1'];  ?></p>
+                  <p><?= $foodDrink['text_2'];  ?></p>
                   <p></p>
                   <?php 
-                  if(!empty($section['boton'])) { ?>
-                  <a class="linkBtn" href="<?= $section['boton']['url'];  ?>" target="_blank" rel="noopener"><?= $section['boton']['title'];  ?></a>
+                  if(!empty($foodDrink['button'])) { ?>
+                  <a class="linkBtn" href="<?= $foodDrink['button']['url'];  ?>" target="_blank" rel="noopener"><?= $foodDrink['button']['title'];  ?></a>
                   <?php } ?>
                 </div>
               </div>
             </section>
         <?php } } ?>
         <?php
-        $section3TypeB= get_field('section_3_type_b');
-        if(!empty($section3TypeB)) { 
-        foreach($section3TypeB as $section) { ?>  
+        $foodDrinksGallery= get_field('food_&_drinks_gallery');
+        if(!empty($foodDrinksGallery)) { 
+        foreach($foodDrinksGallery as $foodDrink) { ?>  
             <section class="foodDrink_sec drink scrollAnimation">
               <div class="foodDrink_imgBox">
                 <div class="owl-carousel owl-theme js_rellax scrollAnimation fadeIn02">
                   <?php
-                  $gallery = $section['type_b_gallery'];
+                  $gallery = $foodDrink['gallery'];
                   if(!empty($gallery)) { 
                   foreach($gallery as $image) { ?>
                   <div class="cb-ratio">
@@ -388,10 +391,10 @@ require_once(__DIR__ . '/Utils.php');
               </div>
               <div class="foodDrink_contBox scrollAnimation fadeIn">
                 <div>
-                  <h2 class="sec_ttl text-left"><?= $section['type_b_title'] ?></h2>
+                  <h2 class="sec_ttl text-left"><?= $foodDrink['title'] ?></h2>
                   <div class="foodDrink_textBox">
-                    <p><?= $section['type_b_text_1'] ?></p>
-                    <p><?= $section['type_b_text_2'] ?></p>
+                    <p><?= $foodDrink['text_1'] ?></p>
+                    <p><?= $foodDrink['text_2'] ?></p>
                   </div>
                 </div>
               </div>
@@ -399,21 +402,22 @@ require_once(__DIR__ . '/Utils.php');
         <?php } }?>    
      </section>
 
-     <section class="activities" id="section4">
+     <section class="activities" id="activities">
        <div class="scrollAnimation fadeIn">
        <?php
          if(!empty($itemsArray['4']['title'])){ ?>
          <p class="sec_num">05</p>
          <h2 class="sec_ttl"><?= $itemsArray['4']['title']; ?></h2>
          <?php } ?>
-         <p class="activities_read inner"><?= get_field('section_4')['section_4_text']; ?></p>
+         <p class="activities_read inner"><?= get_field('activities')['info']; ?></p>
        </div>
 
-       <div class="activities_sliderWrap">
+       <div class="activities_sliderWrap h370">
          <div class="activities_slider swiper-container">
            <div class="swiper-wrapper">
             <?php
-            $gallerySlide = get_field('section_4')['section_4_gallery'];
+            $gallerySlide = get_field('activities')['gallery'];
+            $galleryCount = count($gallerySlide);
             if(!empty($gallerySlide)) {
             foreach($gallerySlide as $image) { ?>
              <div class="swiper-slide"><img src="<?=  $image['sizes']['large']; ?>" alt=""></div>
@@ -422,28 +426,28 @@ require_once(__DIR__ . '/Utils.php');
          </div>
        </div>
         <?php 
-        if(!empty(get_field('section_4')['section_4_link'])) { ?>
-       <a class="activities_link" href="<?= get_field('section_4')['section_4_link']; ?>" target="_blank" rel="noopener"><?= get_field('section_4')['section_4_link_text']; ?></a>
+        if(!empty(get_field('activities')['link'])) { ?>
+       <a class="activities_link" href="<?= get_field('activities')['link']; ?>" target="_blank" rel="noopener"><?= get_field('activities')['link_text']; ?></a>
         <?php } ?>
       </section>
 
-     <section class="booking">
+     <section class="booking h650">
        <div class="booking_contBox scrollAnimation fadeIn">
          <div class="booking_contBox_inner">
-           <h2 class="booking_ttl"><?= get_field('section_booking')['title']; ?></h2>
-           <p class="booking_read"><?= get_field('section_booking')['text_1']; ?> <a href="mailto:<?= get_field('section_booking')['mail']; ?>"><?= get_field('section_booking')['mail']; ?></a> <?= get_field('section_booking')['text_2']; ?></p>
+           <h2 class="booking_ttl"><?= get_field('booking')['title']; ?></h2>
+           <p class="booking_read"><?= get_field('booking')['text_1']; ?> <a href="mailto:<?= get_field('booking')['mail']; ?>"><?= get_field('booking')['mail']; ?></a> <?= get_field('booking')['text_2']; ?></p>
            <?php 
-           if(!empty(get_field('section_booking')['boton'])) {  ?>
-           <a class="linkBtn" href="<?= get_field('section_booking')['boton']['url']; ?>" target="_blank" rel="noopener"><?= get_field('section_booking')['boton']['title']; ?></a>
+           if(!empty(get_field('booking')['button'])) {  ?>
+           <a class="linkBtn" href="<?= get_field('booking')['button']['url']; ?>" target="_blank" rel="noopener"><?= get_field('booking')['button']['title']; ?></a>
            <?php } ?>
           </div>
        </div>
        <?php 
-       if(!empty(get_field('section_booking')['image_left'])) { ?>
-       <div class="booking_imgBox01"><img src="<?= get_field('section_booking')['image_left']['sizes']['large']; ?>" alt=""></div>
+       if(!empty(get_field('booking')['image_left'])) { ?>
+       <div class="booking_imgBox01"><img src="<?= get_field('booking')['image_left']['sizes']['large']; ?>" alt=""></div>
        <?php }
-       if(!empty(get_field('section_booking')['image_right'])) { ?>
-       <div class="booking_imgBox02"><img src="<?= get_field('section_booking')['image_right']['sizes']['large']; ?>" alt=""></div>
+       if(!empty(get_field('booking')['image_right'])) { ?>
+       <div class="booking_imgBox02"><img src="<?= get_field('booking')['image_right']['sizes']['large']; ?>" alt=""></div>
        <?php } ?>
      </section>
 
@@ -460,16 +464,16 @@ require_once(__DIR__ . '/Utils.php');
         }?>
          <ul class="footer_nav_sns">
            <?php 
-            if(!empty(get_field('contact')['facebook'])) { ?>
+            if(!empty(get_field('facebook', 'options'))) { ?>
            <li>
-             <a href="<?= get_field('contact')['facebook']; ?>" target="_blank" rel="noopener">
+             <a href="<?= get_field('facebook', 'options'); ?>" target="_blank" rel="noopener">
                FACEBOOK
              </a>
            </li>
            <?php }
-           if(!empty(get_field('contact')['instagram'])) { ?>
+           if(!empty(get_field('instagram', 'options'))) { ?>
            <li>
-             <a href="<?= get_field('contact')['instagram']; ?>" target="_blank" rel="noopener">
+             <a href="<?= get_field('instagram', 'options'); ?>" target="_blank" rel="noopener">
                INSTAGRAM
              </a>
            </li>
@@ -480,44 +484,48 @@ require_once(__DIR__ . '/Utils.php');
        <div class="footer_container">
          <div class="footer_cont01">
          <?php 
-          if(!empty(get_field('section_footer')['footer_logo'])) { ?>
-           <p class="footer_logo"><a href="#main"><img src="<?= get_field('section_footer')['footer_logo']['sizes']['large']; ?>" alt=""></a></p>
+          if(!empty(get_field('footer','options')['logo'])) { ?>
+           <p class="footer_logo"><a href="#main"><img src="<?= get_field('footer','options')['logo']['sizes']['large']; ?>" alt=""></a></p>
            <?php } ?>
            <address class="footer_address">
-             <p><?= get_field('section_footer')['footer_text']; ?></p>
-             <?php 
-              if(!empty(get_field('section_footer')['google_map'])) { ?>
-             <p><a class="underline" href="<?= get_field('section_footer')['google_map']; ?>" target="_blank" rel="noopener">(Google Map)</a></p>
+           <?php 
+              if(!empty(get_field('footer','options')['text'])) { ?>
+             <p><?= get_field('footer','options')['text']; ?></p>
              <?php }
-             if(!empty(get_field('section_footer')['phone'])) { ?>
-             <p class="footer_tel"><a href="tel:">Tel : <?= get_field('section_footer')['phone']; ?></a></p>
+              if(!empty(get_field('footer','options')['google_map'])) { ?>
+             <p><a class="underline" href="<?= get_field('footer','options')['google_map']; ?>" target="_blank" rel="noopener">(Google Map)</a></p>
              <?php }
-             if(!empty(get_field('section_footer')['mail'])) { ?>
-             <p><a href="mailto:<?= get_field('section_footer')['mail']; ?>">Mail : <?= get_field('section_footer')['mail']; ?></a></p>
+             if(!empty(get_field('footer','options')['phone'])) { ?>
+             <p class="footer_tel"><a href="tel:<?= get_field('footer','options')['phone']; ?>">Tel : <?= get_field('footer','options')['phone']; ?></a></p>
+             <?php }
+             if(!empty(get_field('footer','options')['mail'])) { ?>
+             <p><a href="mailto:<?= get_field('footer','options')['mail']; ?>">Mail : <?= get_field('footer','options')['mail']; ?></a></p>
              <?php } ?>
            </address>
-         </div>
+         </div> 
 
          <div class="footer_cont02">
-           <p><?= get_field('section_footer')['footer_text_2']; ?></p>
-           <?php
-             if(!empty(get_field('section_footer')['footer_boton'])) { ?>
-           <a class="linkBtn" href="<?= get_field('section_footer')['footer_boton']['url']; ?>" target="_blank" rel="noopener"><?= get_field('section_footer')['footer_boton']['title']; ?></a>
+         <?php 
+              if(!empty(get_field('footer','options')['text_2'])) { ?>
+           <p><?= get_field('footer','options')['text_2']; ?></p>
+           <?php }
+             if(!empty(get_field('footer','options')['button'])) { ?>
+           <a class="linkBtn" href="<?= get_field('footer','options')['button']['url']; ?>" target="_blank" rel="noopener"><?= get_field('footer','options')['button']['title']; ?></a>
            <?php } ?>
           </div>
 
          <ul class="footer_sns sp">
           <?php 
-          if(!empty(get_field('contact')['facebook'])) { ?>
+          if(!empty(get_field('facebook', 'options'))) { ?>
            <li>
-             <a href="<?= get_field('contact')['facebook']; ?>" target="_blank" rel="noopener">
+             <a href="<?= get_field('facebook', 'options'); ?>" target="_blank" rel="noopener">
               <?php include('image/sns_facebook.php'); ?>
              </a>
            </li>
             <?php }
-            if(!empty(get_field('contact')['instagram'])) { ?>
+            if(!empty(get_field('instagram', 'options'))) { ?>
            <li>
-             <a href="<?= get_field('contact')['instagram']; ?>" target="_blank" rel="noopener">
+             <a href="<?= get_field('instagram', 'options'); ?>" target="_blank" rel="noopener">
              <?php include('image/sns_instagram.php'); ?>
              </a>
            </li>
@@ -526,14 +534,14 @@ require_once(__DIR__ . '/Utils.php');
 
          <ul class="footer_linkBox">
           <?php
-          $ExternalLogo= get_field('external_logo_link');
-          if(!empty($ExternalLogo)) {
-          foreach($ExternalLogo as $logo){ ?>
+          $partners= get_field('partners');
+          if(!empty($partners)) {
+          foreach($partners as $partner){ ?>
             <?php 
-            if(!empty($logo['external_logo'])) { ?>
+            if(!empty($partner['logo'])) { ?>
            <li>
-             <a href="<?= $logo['external_link']['url']; ?>" target="_blank" rel="noopener">
-               <img src="<?= $logo['external_logo']['sizes']['medium']; ?>" alt="">
+             <a href="<?= $partner['link']; ?>" target="_blank" rel="noopener">
+               <img src="<?= $partner['logo']['sizes']['medium']; ?>" alt="">
              </a>
            </li>
            <?php } } }?>
@@ -542,6 +550,11 @@ require_once(__DIR__ . '/Utils.php');
      </footer>
    </div>
  </div>
+
+<script>
+  var galleryNumber = <?= $galleryCount;  ?> - 1;
+</script>
+
 
 
 <?php get_footer(); ?>

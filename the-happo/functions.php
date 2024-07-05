@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', 'may-10');
+	define( '_S_VERSION', 'july-2');
 }
 function arphabet_widgets_init() {
 
@@ -28,7 +28,8 @@ add_theme_support( 'post-thumbnails' );
 
 
 function happo_files() {
-    wp_enqueue_script('js', get_theme_file_uri('/build/index.js'), ['jquery'], _S_VERSION, TRUE);
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script('js', get_theme_file_uri('/build/index.js'), ['jquery'], _S_VERSION, TRUE);
     wp_enqueue_style('happo_main_styles', get_theme_file_uri('/build/style-index.css'), [], _S_VERSION);
     wp_enqueue_style('happo_extra_styles', get_theme_file_uri('/build/index.css'), [], _S_VERSION);
 }
@@ -48,7 +49,12 @@ function happo_features() {
 add_action('after_setup_theme', 'happo_features');
 
 
+add_action('admin_menu', function() {
+   global $menu;
 
+   add_menu_page('Home Page', 'Home Page', 'read', 'post.php?post=7&action=edit', '', 'dashicons-admin-home', 4);
+   remove_menu_page('edit-comments.php');
+});
 
 
 

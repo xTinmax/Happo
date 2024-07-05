@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper from 'swiper/bundle';
 
 
 
@@ -72,8 +72,9 @@ $(function () {
   //ACTIVITIES SLIDER
   
   var mySwiper = new Swiper('.activities_slider', {
+    
     speed: 6000,
-    slidesPerView: '7',
+    slidesPerView: galleryNumber,
     loop: true,
     allowTouchMove: false,
     autoplay: {
