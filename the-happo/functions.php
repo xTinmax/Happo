@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', 'july-2');
+	define( '_S_VERSION', 'july-12');
 }
 function arphabet_widgets_init() {
 
@@ -56,5 +56,9 @@ add_action('admin_menu', function() {
    remove_menu_page('edit-comments.php');
 });
 
-
+add_shortcode('button', function($atts) {
+   ob_start();
+   include(__DIR__ . '/button.php');
+   return ob_get_clean();
+});
 

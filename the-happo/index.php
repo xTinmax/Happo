@@ -19,6 +19,7 @@ require_once(__DIR__ . '/Utils.php');
 </head>
 
 <body >
+  
   <div class="mainFix">
     <button class="gNavBtn">
       <span></span>
@@ -159,54 +160,56 @@ require_once(__DIR__ . '/Utils.php');
          <?php } ?>
        </div>
        <?php
-       if(!empty(get_field('features_right'))) {
-       $featuresRight= get_field('features_right');
-        foreach($featuresRight as $feature) { ?>
+       if(!empty(get_field('features'))) {
+       $features= get_field('features');
+       $countFeatures = 0;
+        foreach($features as $feature) { 
+          $countFeatures++;
+          if($countFeatures % 2) { ?>
             
-          <section class="saving facilities_sec inner-pc">
-            <div class="facilities_imgBox">
-              <picture>
-                <source media="(max-width:767px)" srcset="<?= $feature['image']['sizes']['large']; ?>">
-                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
-              </picture>
-            </div>
+            <section class="saving facilities_sec inner-pc">
+              <div class="facilities_imgBox">
+                <picture>
+                  <source media="(max-width:767px)" srcset="<?= $feature['image']['sizes']['large']; ?>">
+                  <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
+                </picture>
+              </div>
 
-            <div class="facilities_textBox scrollAnimation fadeIn">
-              <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
-              <ul class="facilities_point scrollAnimation">
-                <?php
-                if(!empty($feature['feature_list'])) { 
-                $itemList= $feature['feature_list']; 
-                foreach($itemList as $item) { 
-                  if(!empty($item['feature'])) { ?>
-                <li><?= $item['feature']; ?></li>
-                <?php }}} ?>
-              </ul>
-            </div>
-          </section>
-       <?php } }
-       if(!empty(get_field('features_left'))) {
-       $featuresLeft= get_field('features_left');
-        foreach($featuresLeft as $feature) { ?>           
-       <section class="nonContact facilities_sec inner-pc">
-         <div class="facilities_imgBox">
-           <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
-         </div>
+              <div class="facilities_textBox scrollAnimation fadeIn">
+                <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
+                <ul class="facilities_point scrollAnimation">
+                  <?php
+                  if(!empty($feature['feature_list'])) { 
+                  $itemList= $feature['feature_list']; 
+                  foreach($itemList as $item) { 
+                    if(!empty($item['feature'])) { ?>
+                  <li><?= $item['feature']; ?></li>
+                  <?php }}} ?>
+                </ul>
+              </div>
+             </section>
+              <?php
+              } else { ?>
+              <section class="nonContact facilities_sec inner-pc">
+                      <div class="facilities_imgBox">
+                        <img class="js_rellax scrollAnimation fadeIn02" src="<?= $feature['image']['sizes']['large']; ?>" alt="">
+                      </div>
 
-         <div class="facilities_textBox scrollAnimation fadeIn">
-           <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
-           <ul class="facilities_point scrollAnimation">
-           <?php
-           if(!empty($feature['feature_list'])) {
-                $itemList= $feature['feature_list']; 
-                foreach($itemList as $item) { 
-                  if(!empty($item['feature'])) {?>
-                <li><?= $item['feature']; ?></li>
-                <?php }}} ?>
-           </ul>
-         </div>
-       </section>
-       <?php } } ?>
+                      <div class="facilities_textBox scrollAnimation fadeIn">
+                        <h3 class="facilities_contTtl"><?= $feature['title']; ?></h3>
+                        <ul class="facilities_point scrollAnimation">
+                        <?php
+                        if(!empty($feature['feature_list'])) {
+                              $itemList= $feature['feature_list']; 
+                              foreach($itemList as $item) { 
+                                if(!empty($item['feature'])) {?>
+                              <li><?= $item['feature']; ?></li>
+                              <?php }}} ?>
+                        </ul>
+                      </div>
+                    </section>
+           <?php } } } ?>           
+       
 
        <ul class="facilities_feature inner scrollAnimation fadeIn">
          <?php 
@@ -350,57 +353,46 @@ require_once(__DIR__ . '/Utils.php');
        <?php
          $foodDrinks= get_field('food_&_drinks');
          if(!empty($foodDrinks)) {
-         foreach($foodDrinks as $foodDrink) { ?>
-            <section class="foodDrink_sec food scrollAnimation">
-              <?php 
-              if(!empty($foodDrink['image'])) { ?>
-              <div class="foodDrink_imgBox">
-                <img class="js_rellax scrollAnimation fadeIn02" src="<?= $foodDrink['image']['sizes']['large'];  ?>" alt="">
-              </div>
-              <?php } ?>
-              <div class="foodDrink_contBox scrollAnimation fadeIn">
-                <h3><img src="<?= $foodDrink['logo']['sizes']['large'];  ?>" alt=""></h3>
-                <div class="foodDrink_textBox">
-                  <p><?= $foodDrink['text_1'];  ?></p>
-                  <p><?= $foodDrink['text_2'];  ?></p>
-                  <p></p>
-                  <?php 
-                  if(!empty($foodDrink['button'])) { ?>
-                  <a class="linkBtn" href="<?= $foodDrink['button']['url'];  ?>" target="_blank" rel="noopener"><?= $foodDrink['button']['title'];  ?></a>
-                  <?php } ?>
-                </div>
-              </div>
-            </section>
-        <?php } } ?>
-        <?php
-        $foodDrinksGallery= get_field('food_&_drinks_gallery');
-        if(!empty($foodDrinksGallery)) { 
-        foreach($foodDrinksGallery as $foodDrink) { ?>  
-            <section class="foodDrink_sec drink scrollAnimation">
-              <div class="foodDrink_imgBox">
-                <div class="owl-carousel owl-theme js_rellax scrollAnimation fadeIn02">
-                  <?php
-                  $gallery = $foodDrink['gallery'];
-                  if(!empty($gallery)) { 
-                  foreach($gallery as $image) { ?>
-                  <div class="cb-ratio">
-                    <img src="<?= $image['sizes']['large']; ?>" alt="">
-                  </div>
-                  <?php } }?>
-                </div>
-              </div>
-              <div class="foodDrink_contBox scrollAnimation fadeIn">
-                <div>
-                  <h2 class="sec_ttl text-left"><?= $foodDrink['title'] ?></h2>
-                  <div class="foodDrink_textBox">
-                    <p><?= $foodDrink['text_1'] ?></p>
-                    <p><?= $foodDrink['text_2'] ?></p>
-                  </div>
-                </div>
-              </div>
-            </section>
-        <?php } }?>    
-     </section>
+            foreach($foodDrinks as $foodDrink) { 
+              $countImage = count($foodDrink['gallery']);
+              
+                if($countImage == 1) { ?>
+                    <section class="foodDrink_sec food scrollAnimation">
+                      <div class="foodDrink_imgBox">
+                        <img class="js_rellax scrollAnimation fadeIn02" src="<?= $foodDrink['gallery'][0]['sizes']['large'];  ?>" alt="">
+                      </div>        
+                      <div class="foodDrink_contBox scrollAnimation fadeIn">
+                      <?= $foodDrink['content']; ?>
+                        </div>
+                    </section>
+
+              <?php }
+                else {  ?>
+
+
+                  <section class="foodDrink_sec drink scrollAnimation">
+                            <div class="foodDrink_imgBox">
+                                <div class="owl-carousel owl-theme js_rellax scrollAnimation fadeIn02">
+                                  <?php
+                                $gallery = $foodDrink['gallery'];
+                                  if(!empty($gallery)) { 
+                                  foreach($gallery as $image) { ?>
+                                <div class="cb-ratio">
+                                  <img src="<?= $image['sizes']['large']; ?>" alt="">
+                                </div>
+                                  <?php } }?>
+                              </div>
+                          </div>
+                              <div class="foodDrink_contBox scrollAnimation fadeIn">
+                                <div>           
+                                <?= $foodDrink['content']; ?>   
+                              </div>
+                          </div>
+                    </section>
+
+              <?php } } } ?>
+      </section>     
+     
 
      <section class="activities" id="activities">
        <div class="scrollAnimation fadeIn">

@@ -1871,15 +1871,14 @@ button.swiper-pagination-bullet {
 @media screen and (max-width: 767px) {
   .mainFix_topFix_language {
     display: block;
-    width: 20px;
     margin-left: auto;
     padding-top: 0;
     font-size: 12px;
     line-height: 17px;
     text-align: center;
     position: fixed;
-    right: 4.8%;
-    top: 65px;
+    right: 19%;
+    top: 27px;
     z-index: 99;
   }
 }
@@ -2822,14 +2821,16 @@ button.swiper-pagination-bullet {
   width: 188px;
 }
 .foodDrink_textBox {
-  max-width: 374px;
-  margin-top: 52px;
+  max-width: 100%;
 }
 @media screen and (max-width: 767px) {
   .foodDrink_textBox {
     max-width: 100%;
     margin-top: 36px;
   }
+}
+.foodDrink_textBox p {
+  max-width: 374px;
 }
 .foodDrink_textBox p + p {
   margin-top: 1.46em;
@@ -2867,7 +2868,7 @@ button.swiper-pagination-bullet {
 }
 @media screen and (max-width: 767px) {
   .foodDrink .drink {
-    margin-top: 198px;
+    margin-top: 90px;
   }
 }
 .foodDrink .drink .foodDrink_imgBox {
@@ -2899,7 +2900,7 @@ button.swiper-pagination-bullet {
 }
 
 .activities {
-  margin-top: 272px;
+  margin-top: 180px;
 }
 @media screen and (max-width: 767px) {
   .activities {
@@ -2922,8 +2923,8 @@ button.swiper-pagination-bullet {
   width: 1946px;
 }
 .activities_slider img {
-  -o-object-fit: fill;
-     object-fit: fill;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
 }
@@ -3461,6 +3462,21 @@ button.swiper-pagination-bullet {
 
 .h650 {
   height: 650px;
+}
+
+.h2 h2 {
+  font-family: "Cormorant", serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-align: left !important;
+}
+
+.margins-1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 /*# sourceMappingURL=style-index.css.map*/
